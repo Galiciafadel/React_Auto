@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RoomList from './RoomsListComponent';
 import EquipmentList from './RoomEquipmentComponent';
+//import EquipmentList from './testEquip';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchRooms, fetchEquipment, fetchApartments, createEquipment, createApartment, createRoom, fetchApartmentType,fetchEquipmentType,fetchUsers,fetchRoomType,putEquipment, loginUser, logoutUser, createUser } from '../redux/ActionCreators';
@@ -11,6 +12,7 @@ import Admin from './AdminComponent';
 import UsersList from './UsersList';
 import UsersApartment from './UsersApartments';
 import RoomEquipmentList from './EquipmentListComponent';
+
 
 
 const mapStateToProps = state => {

@@ -460,9 +460,8 @@ export const updateEquipment = (equipment) => ({
 export const putEquipment = (equipmentId, turnedOn,goal) => (dispatch) => {
 
   const updatedEquipment = {
-      _id: equipmentId,
       turnedOn: turnedOn,
-      goal:goal,
+      goal:goal
       //auto:auto
   }
   console.log('Equipment ', updatedEquipment);

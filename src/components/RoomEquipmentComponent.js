@@ -274,12 +274,12 @@
 
 // export default withRouter(EquipmentList);
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////
 import React, {Component,/* useState*/} from 'react';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
-import Switch from 'react-switch';
-import {makeStyles,Typography, Slider} from '@material-ui/core';
+//import Switch from 'react-switch';
+import {makeStyles,Typography, Slider, FormControlLabel, Switch} from '@material-ui/core';
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 
@@ -319,40 +319,35 @@ class EquipmentForm extends Component {
       super(props);
 
       this.turnOn=this.turnOn.bind(this);
-      //this.handleSliderChange = this.handleSliderChange(this);
-
-    //   this.state = {
-    //     turnedOn: false,
-    //     goal: 0
-    //   };
 
     this.state = {
         turnedOn: this.props.equipmentState,
         goal: this.props.equipmentGoal
     }
+    this.on= this.props.equipmentState;
 
     }
 
-
     turnOn(){
-        this.setState({
-            turnedOn: !this.state.turnedOn
-        });
+        this.setState((state) => ({
+            turnedOn: !state.turnedOn
+        }));
+        this.on = !this.on;
         this.props.putEquipment(this.props.equipmentId, this.state.turnedOn,this.state.goal)
     }
   
-    // handleSliderChange(value){
-    //   alert(value);
-    //   this.props.putEquipment(this.props.equipmentId, false,value)
-
-    // }
     
     render() {
 
         return (
             <div > {//key={equipment._id}>
             }
-                <Switch className="react-switch" onChange={this.turnOn}/>
+                {//<Switch className="react-switch" onChange={this.turnOn} checked={this.state.turnedOn}/>
+    }
+                <FormControlLabel
+                control={<Switch checked={this.on} onChange={this.turnOn} />}
+                label="Normal"
+                />
                 <p className="Labelclass">The equipment is <b>{this.state.turnedOn ? 'on' : 'off'}</b> !</p>
                     {//<MySlider/>}
     }
@@ -360,7 +355,6 @@ class EquipmentForm extends Component {
         );
     }
 }
-
 function RenderRoomEquipment ({equipment,equipmentId,putEquipment}) {
     
 
@@ -424,6 +418,7 @@ const EquipmentList = (props) => {
         );
     }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 // const EquipmmentList = (props) => {
 //     const apartmentList = props.apartments.apartments.map((apartment) => {
