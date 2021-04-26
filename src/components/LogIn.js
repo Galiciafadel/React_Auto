@@ -86,8 +86,7 @@ const LogIn = ({loginUser, auth, history}) => {
           history.push('/admin');
         }
         else{
-          //history.push('/usersApartment');
-          history.push('/apartments');
+          history.push('/usersApartment');
         }
       }
 

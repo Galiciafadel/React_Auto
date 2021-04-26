@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
@@ -14,16 +14,21 @@ function RenderRooms({rooms}) {
             {rooms.map((room)=>{
                 
                 return (
-                   <p className="slider"> Byeee222</p> ,
+                   
                 <div key={room._id}>
-                    <Card>
+                    <Card body inverse style={{ backgroundColor: "#000", borderColor: "#333" }}>
                     <Link to={`/rooms/${room._id}`} >
+                    <CardTitle>{room.name}</CardTitle>
                         <CardImg width="100%" src={baseUrl + room.roomTypeId.imagePath} alt={room.name} />
-                        <CardImgOverlay>
-                            <CardTitle>{room.name}</CardTitle>
-                        </CardImgOverlay>
+                        {/* <CardImgOverlay> */}
+                            
+                        {/* </CardImgOverlay> */}
                     </Link>
                     </Card>
+                    <div>
+                        <p></p>
+
+                    </div>
                 
                 </div>
                 )
@@ -34,24 +39,9 @@ function RenderRooms({rooms}) {
         ); 
 
     else {
-        return <div>HELLOOO</div>;
+        return <div>No Rooms to display</div>;
     }       
 }
-
-
-// function RenderRooms({rooms}) {
-//         return (
-//             <Card>
-//                 <Link to={`/equipment/`}>
-                
-//                     <CardImg width="100%" src={baseUrl + rooms.rooms[1].roomTypeId.imagePath} alt={rooms.name} />
-//                     <CardImgOverlay>
-//                         <CardTitle>{rooms.rooms[1].name}</CardTitle>
-//                     </CardImgOverlay>
-//                 </Link>
-//             </Card>
-//         );
-//     }
 
 const RoomList = (props) => {
 

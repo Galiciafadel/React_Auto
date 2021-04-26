@@ -7,13 +7,10 @@ import { baseUrl} from '../shared/baseUrl';
 
 function RenderEquipmentItem ({equipment}) {
     return (
-        <Card>
+        <Card body inverse style={{ backgroundColor: "#000", borderColor: "#333" }}>
             <Link to={`/equipment/${equipment._id}`}>
-            
-                <CardImg width="100%" src={baseUrl + equipment.equipmentTypeId.imagePath} alt={equipment.name} />
-                <CardImgOverlay>
-                    <CardTitle>{equipment.name}</CardTitle>
-                </CardImgOverlay>
+                <CardTitle>{equipment.equipmentTypeId.name}</CardTitle>
+                <CardImg width="100%" src={baseUrl + equipment.equipmentTypeId.imagePath} alt={equipment.name} /> 
             </Link>
         </Card>
     );

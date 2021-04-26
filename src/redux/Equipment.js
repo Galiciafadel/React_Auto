@@ -5,7 +5,7 @@ export const Equipment = (state = { isLoading: true,
     equipment:[]}, action) => {
     switch (action.type) {
         case ActionTypes.ADD_EQUIPMENT:
-            console.log(JSON.stringify(action.payload));
+            // console.log(JSON.stringify(action.payload));
             return {...state, isLoading: false, errMess: null, equipment: action.payload};
 
         case ActionTypes.EQUIPMENT_LOADING:
@@ -15,7 +15,7 @@ export const Equipment = (state = { isLoading: true,
             return {...state, isLoading: false, errMess: action.payload};
 
         case ActionTypes.UPDATE_EQUIPMENT:
-            console.log('payloadddd' + action.payload)
+            // console.log('payloadddd' + action.payload)
             for (let i = 0; i < state.equipment.length; i++) {
                 if (state.equipment[i]._id.toString() === action.payload._id.toString()) {
                     state.equipment[i] = action.payload;

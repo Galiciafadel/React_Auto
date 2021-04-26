@@ -6,7 +6,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TextField from '@material-ui/core/TextField';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import Input from '@material-ui/core/Input';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -21,10 +20,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import { updateApartment, removeUserFromApartments } from '../services/apartmentService';
 import { deleteUser } from '../services/userService';
@@ -94,13 +91,6 @@ function UsersList(props) {
       setDrop(!drop);
     };
 
-    const filterTable = e => {
-      props.data.filter(user => {
-        console.log(user)
-        user.firstname.includes(e.target.value)
-      });
-    }
-
     const addUser = async () => {
       let user = {
         'username': username,
@@ -109,8 +99,6 @@ function UsersList(props) {
         'lastname': lastname,
         'admin': false
       }
-      // let res = await postUser(user);
-      // let u = {'user': res.data._id};
       let res = await props.createUser(user);  
       console.log(res);  
       updateApartment(apartmentId, {'user': res.payload.user._id});    

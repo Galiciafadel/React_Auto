@@ -457,12 +457,12 @@ export const updateEquipment = (equipment) => ({
   payload: equipment
 });
 
-export const putEquipment = (equipmentId, turnedOn,goal) => (dispatch) => {
+export const putEquipment = (equipmentId, turnedOn, goal, auto) => (dispatch) => {
 
   const updatedEquipment = {
       turnedOn: turnedOn,
-      goal:goal
-      //auto:auto
+      goal:goal,
+      auto:auto
   }
   console.log('Equipment ', updatedEquipment);
 

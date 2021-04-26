@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Card, CardImg, CardImgOverlay,CardTitle} from 'reactstrap';
 import { Link} from 'react-router-dom';
 
-
  
 function ApartmentCard(props) {
    return (
@@ -21,29 +20,27 @@ function UsersApartment(props) {
     const [userId, setUserId] = useState();
     useEffect(() => {
         setUserId(props.auth._id);
-        // setUserId(localStorage.getItem('userId'));
     });
     
-    const findImageById = id => {
-        let image = props.apartmentType.filter(t => t._id === id);
-        return image[0].imagePath;
-    }
-      
-    const findImageByApartId = apartmentId => {
-      let apart = props.apartments.filter(apartment => apartment._id === apartmentId);
-      let apartType = apart[0].apartmentTypeId;
-      return findImageById(apartType)
-    }
-
     const filterApartmentsByUserId = userId => {
-        return props.apartments.filter(apartment => apartment.users.includes(userId));
+        var res = [];
+        for(let i = 0; i < props.apartments.length; i++)
+        {
+          var users = props.apartments[i].users.filter(user => user._id === userId);
+          if(users.length > 0)
+          {
+            res.push(props.apartments[i]);
+          }
+        }
+
+        return res;
     }
-      
 
     return (
         <div>
             {filterApartmentsByUserId(userId).map(apartment => {
-                return <ApartmentCard apartmentId={apartment._id} apartmentName={apartment.name} apartmentImage={findImageByApartId(apartment._id)}></ApartmentCard>
+                console.log(apartment)
+                return <ApartmentCard apartmentId={apartment._id} apartmentName={apartment.name} apartmentImage={apartment.apartmentTypeId.imagePath}></ApartmentCard>
             })}
             
         </div>

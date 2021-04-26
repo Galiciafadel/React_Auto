@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import RoomList from './RoomsListComponent';
 import EquipmentList from './RoomEquipmentComponent';
-//import EquipmentList from './testEquip';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchRooms, fetchEquipment, fetchApartments, createEquipment, createApartment, createRoom, fetchApartmentType,fetchEquipmentType,fetchUsers,fetchRoomType,putEquipment, loginUser, logoutUser, createUser } from '../redux/ActionCreators';
@@ -59,8 +58,6 @@ class Main extends Component {
   }
 
   render() {
-    
-
     const ApartmentWithId = ({match}) => {
       return(
           <RoomList apartment={this.props.apartments.apartments.filter((apartment) => apartment._id === match.params.apartmentId)[0]}
@@ -69,11 +66,6 @@ class Main extends Component {
 
           rooms={this.props.rooms.rooms.filter((room) => room.apartment === match.params.apartmentId)}
           roomsErrMess={this.props.rooms.errMess}
-
-          // isLoading={this.props.apartments.isLoading}
-          // errMess={this.props.apartments.errMess}
-          
-
         />
       );
     };
@@ -85,57 +77,20 @@ class Main extends Component {
           errMess={this.props.rooms.errMess}
 
           equipment={this.props.equipment.equipment.filter((equipement) => equipement.room === match.params.roomId)}
-          //equipmentErrMess={this.props.equipement.errMess}
-
         />
       );
    };
       const EquipmentWithId = ({match}) => {
-        // console.log(match);
         return(
           <EquipmentList equipment={this.props.equipment.equipment}
           isLoading={this.props.equipment.isLoading}
           errMess={this.props.equipment.errMess}
           putEquipment={this.props.putEquipment}
           equipmentId={match.params.equipmentId}
-            // <EquipmentList equipment={this.props.equipment.equipment.filter((equipment) => equipment._id === match.params.equipmentId)}
-            // isLoading={this.props.equipment.isLoading}
-            // errMess={this.props.equipment.errMess}
-            // putEquipment={this.props.putEquipment}
-            // equipmentId={match.params.equipmentId}
-  
-            //equipment={this.props.equipment.equipment.filter((equipement) => equipement.room === match.params.roomId)}
-            //equipmentErrMess={this.props.equipement.errMess}
-  
+          equipmentTypes={this.props.equipmentType.equipmentType}
           />
         );
     };
-  
-      // const ApartmentRooms = ({match}) => {
-      //   return(
-      //       <ApartmentList room={this.props.rooms.rooms.filter((room) => room.id === parseInt(match.params.roomId,10))[0]}
-      //       isLoading={this.props.rooms.isLoading}
-      //       errMess={this.props.rooms.errMess}
-      //       equipment={this.props.equipment.equipment.filter((equipment) => equipment.roomId === parseInt(match.params.roomId,10))}
-      //       equipmentErrMess={this.props.equipment.errMess}
-            
-          
-      
-      //   const findImageById = id => {
-      //     let image = props.apartmentTypes.filter(t => t._id === id);
-      //     return image[0].imagePath;
-      //   }
-        
-      //   const findImageByApartId = apartmentId => {
-      //     let apart = props.apartments.apartments.filter(apartment => apartment._id === apartmentId);
-      //     let apartType = apart[0].apartmentTypeId;
-      //     return findImageById(apartType)
-      //     };
-      // };
-
-
-
-    
 
     return (
       <div>
@@ -145,7 +100,6 @@ class Main extends Component {
             <Route exact path="/" component={() => <LogIn auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser}></LogIn>}></Route> 
             <Route exact path="/admin" component={() => <Admin auth={this.props.auth} logoutUser={this.props.logoutUser} ></Admin>}></Route>
             <Route exact path='/apartments/:apartmentId' component={ApartmentWithId}/>
-            <Route exact path='/apartments' component={()=> <ApartmentList apartments={this.props.apartments} ></ApartmentList>}></Route>
             <Route exact path="/admin/apartments" component={() => <ApartmentsList auth={this.props.auth} apartments={this.props.apartments.apartments} 
                     apartmentTypes={this.props.apartmentType.apartmentType} createApartment={this.props.createApartment}
                     roomTypes={this.props.roomType.roomType} equipmentTypes={this.props.equipmentType.equipmentType}
